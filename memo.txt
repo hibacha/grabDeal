@@ -1,0 +1,6 @@
+echo "# grabDeal" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:hibacha/grabDeal.git
+git push -u origin master
