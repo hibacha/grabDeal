@@ -1,0 +1,7 @@
+<suite name="Test runner" parallel="classes" thread-count="2">
+    <test name="Package with subpackages">
+        <packages>
+            <package name="code.runners.*"/>
+        </packages>
+    </test>
+</suite>
