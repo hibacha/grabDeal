@@ -1,7 +1,0 @@
-<suite name="Test runner" parallel="classes" thread-count="2">
-    <test name="Package with subpackages">
-        <packages>
-            <package name="workers.runners.*"/>
-        </packages>
-    </test>
-</suite>
