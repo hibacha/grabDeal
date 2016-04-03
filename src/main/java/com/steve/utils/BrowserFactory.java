@@ -54,7 +54,7 @@ public class BrowserFactory {
 	}
 
 	private static WebDriver createChromeDriver() {
-		System.setProperty("webdriver.chrome.driver", "/Users/steve/Documents/workspace-sts-3.6.3.SR1/grabDeal/src/test/java/resources/drivers/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
 		return new ChromeDriver();
 	}
 	

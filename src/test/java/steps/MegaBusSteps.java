@@ -2,7 +2,6 @@ package steps;
 
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
@@ -14,15 +13,11 @@ import com.megabus.views.Result.Itinerary;
 import com.megabus.views.Result.TRIP;
 import com.megabus.views.SeatSelect;
 import com.steve.utils.BrowserDriver;
-import com.steve.utils.ThreadUntils;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
-
-
 
 public class MegaBusSteps {
 
@@ -117,7 +112,6 @@ public class MegaBusSteps {
 	@Then("^Click submit button$")
 	public void click_submit() {
 		SeatSelect.clickSubmitButton();
-		ThreadUntils.sleep(TimeUnit.SECONDS, 10);
 	}
 	
 	@Then("^Click visa icon$")
