@@ -18,6 +18,7 @@ public class BrowserDriver {
 	private static WebDriver mDriver;
 
 	public synchronized static WebDriver getCurrentDriver() {
+		 System.out.println(System.getProperty("user.dir"));
 		if (mDriver == null) {
 			try {
 				mDriver = BrowserFactory.getBrowser();
