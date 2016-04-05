@@ -2,16 +2,22 @@ package com.steve.utils;
 
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
 
 public class BrowserFactory {
 	
@@ -34,6 +40,9 @@ public class BrowserFactory {
 			browser = Browsers.browserForName(System.getProperty(BROWSER_PROP_KEY));
 		}
 		switch(browser){
+			case HTMLUNIT:
+				driver = new HtmlUnitDriver();
+				break;
 			case CHROME:
 				driver = createChromeDriver();
 				break;
@@ -54,8 +63,16 @@ public class BrowserFactory {
 	}
 
 	private static WebDriver createChromeDriver() {
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
-		return new ChromeDriver();
+		DesiredCapabilities capability = DesiredCapabilities.chrome();
+		capability.setPlatform(Platform.ANY);
+		capability.setBrowserName("chrome");
+		RemoteWebDriver wd= null;
+		try {
+			wd = new RemoteWebDriver(new URL("http://192.168.0.20:5555/wd/hub"), capability);
+   		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		};
+		return wd;
 	}
 	
 	private static WebDriver createFirefoxDriver(FirefoxProfile firefoxProfile) {
