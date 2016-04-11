@@ -27,9 +27,11 @@ public class MegaBusSteps {
   private SeatSelect seatSelect = new SeatSelect();
 
   @Given("^I navigate to the megabus$")
-  public void given_navigate_to_megabux() {
+  public void given_navigate_to_megabus() {
     LOGGER.info("Entering: I navigate to the megabus");
+    LOGGER.info(this.toString());
     BrowserDriver.getCurrentDriver().get("http://us.megabus.com/");
+    
   }
 
   @When("^I try to set departure state as '(.+)'")

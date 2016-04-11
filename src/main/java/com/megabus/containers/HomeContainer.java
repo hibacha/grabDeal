@@ -1,42 +1,33 @@
 package com.megabus.containers;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class HomeContainer {
 
   @FindBy(how = How.ID, using = "JourneyPlanner_ddlLeavingFromState")
-  @CacheLookup
   private WebElement departState;
 
   @FindBy(how = How.ID, using = "JourneyPlanner_ddlOrigin")
-  @CacheLookup
   private WebElement departCity;
 
   @FindBy(how = How.ID, using = "JourneyPlanner_ddlDest")
-  @CacheLookup
   private WebElement arrivalCity;
 
   @FindBy(how = How.ID, using = "JourneyPlanner_txtOutboundDate")
-  @CacheLookup
   private WebElement departureDate;
 
   @FindBy(how = How.ID, using = "JourneyPlanner_txtReturnDate")
-  @CacheLookup
   private WebElement returnDate;
 
   @FindBy(how = How.XPATH, using = "//div[contains(concat(' ',@class,' '),' departdate ')]/img")
-  @CacheLookup
   private WebElement departureDatePicker;
 
   @FindBy(how = How.XPATH, using = "//div[contains(concat(' ',@class,' '),' returndate ')]/img")
-  @CacheLookup
   private WebElement returnDatePicker;
 
   @FindBy(how = How.ID, using = "JourneyPlanner_btnSearch")
-  @CacheLookup
   private WebElement searchButton;
 
   public WebElement getDepartureDate() {

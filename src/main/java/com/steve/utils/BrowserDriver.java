@@ -14,28 +14,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserDriver {
   private static final Logger LOGGER = Logger.getLogger(BrowserDriver.class.getName());
-  private static WebDriver mDriver;
+  private static ThreadLocal<WebDriver> mDriver = new ThreadLocal<WebDriver>();
 
   public synchronized static WebDriver getCurrentDriver() {
-    if (mDriver == null) {
+    if (mDriver.get() == null) {
       try {
-        mDriver = BrowserFactory.getBrowser();
+        mDriver.set(BrowserFactory.getBrowser());
       } catch (UnreachableBrowserException e) {
-        mDriver = BrowserFactory.getBrowser();
+        mDriver.set( BrowserFactory.getBrowser());
       } catch (WebDriverException e) {
-        mDriver = BrowserFactory.getBrowser();
+        mDriver.set(BrowserFactory.getBrowser());
       } finally {
         Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
       }
     }
-    return mDriver;
+    return mDriver.get();
   }
 
   public static void close() {
     try {
-      if (mDriver != null) {
+      if (mDriver.get() != null) {
         getCurrentDriver().quit();
-        mDriver = null;
+        mDriver.set(null);
         LOGGER.info("closing the browser");
       }
     } catch (UnreachableBrowserException e) {
