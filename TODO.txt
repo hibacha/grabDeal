@@ -2,3 +2,6 @@ TODO
 1. create ip utility
 2. use json configuration file to represent selenium grid
 3. 
+test in different browsers such as safari, firefox for now.
+test in different platform such as iOS.
+integrate docker selenium to have more node for hub
