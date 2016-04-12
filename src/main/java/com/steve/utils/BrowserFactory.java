@@ -68,7 +68,7 @@ public class BrowserFactory {
     capability.setBrowserName("chrome");
     RemoteWebDriver wd = null;
     try {
-      wd = new RemoteWebDriver(new URL("http://192.168.0.4:4444/wd/hub"), capability);
+      wd = new RemoteWebDriver(new URL("http://"+Utility.getLocalIp()+":4444/wd/hub"), capability);
     } catch (MalformedURLException e) {
       e.printStackTrace();
     };
