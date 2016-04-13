@@ -1,7 +1,12 @@
 TODO
 1. create ip utility
 2. use json configuration file to represent selenium grid
-3. 
+3. windows java local date bug
+4. screen shot bug
+5. cacheup annotation doesn't work reason
+6. memory leak when browser is terminated unexpectedly
+
 test in different browsers such as safari, firefox for now.
 test in different platform such as iOS.
 integrate docker selenium to have more node for hub
+
