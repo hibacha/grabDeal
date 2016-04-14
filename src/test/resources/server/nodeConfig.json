@@ -1,0 +1,28 @@
+{
+  "capabilities":
+      [
+        {
+          "browserName": "chrome",
+          "version": "ANY",
+          "platform": "MAC",
+          "maxInstances": 10
+        },
+        {
+          "browserName": "safari",
+          "version": "ANY",
+          "platform": "MAC",
+          "maxInstances": 10
+        }
+      ],
+    "configuration":
+        {
+        "nodeTimeout":120,
+        "port":5557,
+        "nodePolling":2000,
+        "registerCycle":10000,
+        "register":true,
+        "cleanUpCycle":2000,
+        "timeout":30000,
+        "maxSession":10
+        }
+}
