@@ -4,3 +4,25 @@ git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:hibacha/grabDeal.git
 git push -u origin master
+
+
+stop jenkin on mac service 
+	sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+
+jenkin home
+	/Users/Shared/Jenkins
+	Building in workspace /Users/Shared/Jenkins/Home/jobs/GD/workspace   ------- launch as a jenkin service
+	 
+	Building in workspace /Users/steve/.jenkins/jobs/newGD/workspace     ------- launch as a java process
+	 
+jdk home
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
+
+maven home
+	/usr/share/apache-maven-3.2.1
+
+
+@make jenkin can run selenium web driver@
+	don't use jenkin install library
+	USE [java -jar jenkins.jar]
+	https://forgetfulprogrammer.wordpress.com/tag/interact-with-desktop/
