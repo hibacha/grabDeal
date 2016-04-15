@@ -26,3 +26,9 @@ maven home
 	don't use jenkin install library
 	USE [java -jar jenkins.jar]
 	https://forgetfulprogrammer.wordpress.com/tag/interact-with-desktop/
+	
+
+@
+	
+
+	
