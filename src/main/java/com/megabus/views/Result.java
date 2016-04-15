@@ -124,13 +124,13 @@ public class Result {
 
   public void addToJourney() {
     WebElement button = CONTAINER.getAddtoJourneyButton();
-    try {
-      ThreadUntils.sleep(TimeUnit.SECONDS, 2);
-      FileUtils.copyFile(Utility.captureBitMap(button), new File("/tmp/files/div.png"));
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+//    try {
+//      ThreadUntils.sleep(TimeUnit.SECONDS, 2);
+//      FileUtils.copyFile(Utility.captureBitMap(button), new File("/tmp/files/div.png"));
+//    } catch (IOException e) {
+//      // TODO Auto-generated catch block
+//      e.printStackTrace();
+//    }
     button.click();
   }
 
