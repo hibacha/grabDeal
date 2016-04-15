@@ -2,6 +2,7 @@ package steps;
 
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
@@ -13,6 +14,7 @@ import com.megabus.views.Result.Itinerary;
 import com.megabus.views.Result.TRIP;
 import com.megabus.views.SeatSelect;
 import com.steve.utils.BrowserDriver;
+import com.steve.utils.ThreadUntils;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -28,8 +30,6 @@ public class MegaBusSteps {
 
   @Given("^I navigate to the megabus$")
   public void given_navigate_to_megabus() {
-    LOGGER.info("Entering: I navigate to the megabus");
-    LOGGER.info(this.toString());
     BrowserDriver.getCurrentDriver().get("http://us.megabus.com/");
     
   }
@@ -88,22 +88,29 @@ public class MegaBusSteps {
 
   @When("^I click add to journey button$")
   public void click_add_to_journey_button() {
+    
     result.addToJourney();
   }
 
   @And("^I click continue button$")
   public void click_continue_button_outbound() {
+    LOGGER.info("first time click continue button");
     seatSelect.clickContinueButton();
+    ThreadUntils.sleep(TimeUnit.SECONDS, 2);
   }
 
   @And("^I click continue button again$")
   public void click_continue_button_inbound() {
+    LOGGER.info("second time click continue button");
     seatSelect.clickContinueButton();
+    ThreadUntils.sleep(TimeUnit.SECONDS, 2);
   }
 
   @And("^Input my mobile phone number ([\\d-]+)$")
   public void type_mobile_phone(String rawPhoneNumber) {
     seatSelect.typeMobilephone(rawPhoneNumber);
+    ThreadUntils.sleep(TimeUnit.SECONDS, 2);
+    
   }
 
   @And("^Check agree checkbox$")
@@ -114,6 +121,7 @@ public class MegaBusSteps {
   @Then("^Click submit button$")
   public void click_submit() {
     seatSelect.clickSubmitButton();
+    ThreadUntils.sleep(TimeUnit.SECONDS, 2);
   }
 
   @Then("^Click visa icon$")
