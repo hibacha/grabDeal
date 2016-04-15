@@ -65,7 +65,7 @@ public class BrowserFactory {
   private static WebDriver createChromeDriver() {
     DesiredCapabilities capability = DesiredCapabilities.chrome();
     capability.setPlatform(Platform.ANY);
-    capability.setBrowserName("chrome");
+    capability.setBrowserName("safari");
     RemoteWebDriver wd = null;
     try {
       wd = new RemoteWebDriver(new URL("http://"+Utility.getLocalIp()+":4444/wd/hub"), capability);
