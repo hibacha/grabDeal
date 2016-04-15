@@ -1,5 +1,7 @@
 package com.megabus.views;
 
+import static com.steve.utils.ThreadUntils.sleep;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +12,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.megabus.containers.HomeContainer;
 import com.steve.utils.BrowserDriver;
-import static com.steve.utils.ThreadUntils.sleep;
 
 public class Home {
 
@@ -37,7 +38,6 @@ public class Home {
     BrowserDriver.waitForElement(ele);
     Select select = new Select(ele);
     select.selectByVisibleText(city);
-
   }
 
   public void selectDepartureDate(LocalDate date) {
@@ -47,8 +47,8 @@ public class Home {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
     ele.sendKeys(date.format(formatter));
     WebElement datePicker = CONTAINER.getDepartureDatePicker();
-    datePicker.click();
-
+    CONTAINER.getDateIcon(date.getDayOfMonth()).click();
+    if(datePicker.isDisplayed()) datePicker.click();
   }
 
   public void selectReturnDate(LocalDate date) {
