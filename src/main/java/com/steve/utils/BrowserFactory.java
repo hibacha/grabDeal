@@ -65,10 +65,11 @@ public class BrowserFactory {
   private static WebDriver createChromeDriver() {
     DesiredCapabilities capability = DesiredCapabilities.chrome();
     capability.setPlatform(Platform.ANY);
-    capability.setBrowserName("safari");
+    capability.setBrowserName("chrome");
     RemoteWebDriver wd = null;
     try {
-      wd = new RemoteWebDriver(new URL("http://"+Utility.getLocalIp()+":4444/wd/hub"), capability);
+      String dockerHostHub = "hub:32888";
+      wd = new RemoteWebDriver(new URL("http://"+dockerHostHub+"/wd/hub"), capability);
     } catch (MalformedURLException e) {
       e.printStackTrace();
     };
