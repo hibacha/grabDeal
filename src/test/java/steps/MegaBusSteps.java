@@ -129,7 +129,7 @@ public class MegaBusSteps {
   public void click_visa() {
     // TODO move to new view later
     seatSelect.clickVisaIcon();
-    payment.input_payment_info();
+    //payment.input_payment_info();
     BrowserDriver.close();
   }
 }
