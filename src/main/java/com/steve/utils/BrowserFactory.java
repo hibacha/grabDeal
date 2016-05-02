@@ -68,7 +68,7 @@ public class BrowserFactory {
     capability.setBrowserName("chrome");
     RemoteWebDriver wd = null;
     try {
-      String dockerHostHub = "hub:32888";
+      String dockerHostHub = "192.168.99.100:32888";
       wd = new RemoteWebDriver(new URL("http://"+dockerHostHub+"/wd/hub"), capability);
     } catch (MalformedURLException e) {
       e.printStackTrace();
