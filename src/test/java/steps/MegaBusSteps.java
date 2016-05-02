@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.megabus.views.Home;
+import com.megabus.views.Payment;
 import com.megabus.views.Result;
 import com.megabus.views.Result.Itinerary;
 import com.megabus.views.Result.TRIP;
@@ -27,11 +28,11 @@ public class MegaBusSteps {
   private Home home = new Home();
   private Result result = new Result();
   private SeatSelect seatSelect = new SeatSelect();
-
+  private Payment payment = new Payment();
+  
   @Given("^I navigate to the megabus$")
   public void given_navigate_to_megabus() {
     BrowserDriver.getCurrentDriver().get("http://us.megabus.com/");
-    
   }
 
   @When("^I try to set departure state as '(.+)'")
@@ -128,6 +129,7 @@ public class MegaBusSteps {
   public void click_visa() {
     // TODO move to new view later
     seatSelect.clickVisaIcon();
+    payment.input_payment_info();
     BrowserDriver.close();
   }
 }
