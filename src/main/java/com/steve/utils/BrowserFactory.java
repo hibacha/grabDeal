@@ -102,10 +102,10 @@ public class BrowserFactory {
 
   private static void addAllBrowserSetup(WebDriver driver) {
     driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    driver.manage().window().setPosition(new Point(0, 0));
-    java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    Dimension dim = new Dimension((int) screenSize.getWidth(), (int) screenSize.getHeight());
-    driver.manage().window().setSize(dim);
+//    driver.manage().window().setPosition(new Point(0, 0));
+//    java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//    Dimension dim = new Dimension((int) screenSize.getWidth(), (int) screenSize.getHeight());
+//    driver.manage().window().setSize(dim);
   }
 
 }
