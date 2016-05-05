@@ -15,5 +15,5 @@ Using maven setting file to specify local repo location
 Update volumn_from to specify repo location above
 
 x11 display issue--comment out some code about awt
-
+symbolic link is not working ln -s
 
