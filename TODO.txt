@@ -10,3 +10,8 @@ test in different browsers such as safari, firefox for now.
 test in different platform such as iOS.
 integrate docker selenium to have more node for hub
 
+/5/5/2016
+Using maven setting file to specify local repo location
+Update volumn_from to specify repo location above
+
+
