@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Maxfield Stewart
+MAINTAINER Maxfield Stewart, Steve Zhou
 
 # Install Essentials
 RUN yum update -y && \
@@ -13,6 +13,7 @@ RUN yum install -y git && \
 	yum install -y sudo && \
 	yum clean all
 
+#download maven for maven build
 RUN wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
 RUN tar xzf apache-maven-3.2.5-bin.tar.gz -C /usr/local
 RUN cd /usr/local
@@ -21,12 +22,9 @@ ENV M2_HOME /usr/local/apache-maven-3.2.5
 ENV PATH $M2_HOME/bin:$PATH
 ENV DISPLAY :0.0
 
+#change maven local repository to specific folder on volume
 RUN mkdir -p /var/maven/localRepo
-#RUN sed -i '55i<localRepository>/var/maven/localRepo</localRepository>' /usr/local/apache-maven-3.2.5/conf/settings.xml
-
-
-#volumn
-VOLUME /var/maven/localRepo
+RUN sed -i '55i<localRepository>/var/maven/localRepo</localRepository>' /usr/local/apache-maven-3.2.5/conf/settings.xml
 
 # gen dummy keys, centos doesn't autogen them like ubuntu does
 RUN /usr/bin/ssh-keygen -A
@@ -42,9 +40,7 @@ RUN mkdir /home/jenkins/.ssh
 
 COPY /files/authorized_keys /home/jenkins/.ssh/authorized_keys
 
-
 RUN chown -R jenkins /var/maven/localRepo
-CMD ls -l /var/maven/localRepo
 RUN chgrp -R jenkins /var/maven/localRepo
 RUN chown -R jenkins /home/jenkins
 RUN chgrp -R jenkins /home/jenkins

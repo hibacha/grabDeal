@@ -14,10 +14,6 @@ nginx:
   - master:jenkins-master
 slave:
  build: jenkins-slave
- volumes_from:
-  - data
- links:
-  - hub:hub
 hub:
  build: selenium-hub
  ports:

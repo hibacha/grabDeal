@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Maxfield Stewart
+MAINTAINER Maxfield Stewart, Steve Zhou
 
 # see https://bugs.debian.org/775775
 # and https://github.com/docker-library/java/issues/19#issuecomment-70546872
@@ -15,16 +15,6 @@ RUN yum makecache \
     java-1.8.0-openjdk-devel \
     && yum clean all
 
-RUN wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
-RUN tar xzf apache-maven-3.2.5-bin.tar.gz -C /usr/local
-RUN cd /usr/local
-RUN touch /etc/profile.d/maven.sh
-ENV M2_HOME /usr/local/apache-maven-3.2.5
-ENV PATH $M2_HOME/bin:$PATH
-ENV DISPLAY :0.0
-
-#RUN mkdir -p /var/maven/localRepo
-#RUN sed -i '55i<localRepository>/var/maven/localRepo</localRepository>' /usr/local/apache-maven-3.2.5/conf/settings.xml
 
 #RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
@@ -53,7 +43,6 @@ RUN useradd -d "$JENKINS_HOME" -u 1000 -m -s /bin/bash jenkins
 # Jenkins home directory is a volume, so configuration and build history
 # can be persisted and survive image upgrades
 VOLUME /var/jenkins_home
-#VOLUME /var/maven/localRepo
 
 # `/usr/share/jenkins/ref/` contains all reference configuration we want
 # to set on a fresh new installation. Use it to bundle additional plugins
@@ -65,7 +54,6 @@ RUN curl -fL http://mirrors.jenkins-ci.org/war-stable/$JENKINS_VERSION/jenkins.w
   && echo "$JENKINS_SHA /usr/share/jenkins/jenkins.war" | sha1sum -c -
 
 # Prep Jenkins Directories
-# RUN chown -R jenkins /var/maven/localRepo
 RUN chown -R jenkins "$JENKINS_HOME" /usr/share/jenkins/ref
 RUN mkdir /var/log/jenkins
 RUN mkdir /var/cache/jenkins
