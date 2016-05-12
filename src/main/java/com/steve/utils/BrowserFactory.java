@@ -65,7 +65,7 @@ public class BrowserFactory {
   private static WebDriver createChromeDriver() {
     DesiredCapabilities capability = DesiredCapabilities.chrome();
     capability.setPlatform(Platform.ANY);
-    capability.setBrowserName("chrome");
+    capability.setBrowserName("firefox");
     RemoteWebDriver wd = null;
     try {
       String dockerHostHub = "hub:4444";
