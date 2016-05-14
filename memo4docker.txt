@@ -1,0 +1,41 @@
+#start a default machine
+docker-machine start default
+
+#switch to docker shell
+eval $(docker-machine env default)
+
+#start a local docker hub
+docker run -d --name hub -P selenium/hub
+
+
+#start a local docker node of chrome
+docker run -d --name chrome-debug --link hub:hub -P selenium/node-chrome-debug
+ 
+
+ docker ps
+ docker-machine ls
+ docker-machine create --driver virtualbox default
+ docker ip default
+ 
+ open vnc on chrome debug node
+ vnc://192.168.99.100:32770
+ 
+ 
+ #start a container with image in the context of 
+ docker run -i -t selenium/node-chrome-debug /bin/bash
+ -t  Allocate a pseudo-TTY
+ -i Keep STDIN open even if not attached
+ 
+ #get host url
+ docker-machine url default
+ 
+ #execute command on docker container
+ docker exec -it [container] [command]
+ 
+ #check docker network of all bridge setting container
+ docker network inspect bridge|less
+ 
+ #chekc docker container mount
+ docker inspect <container_name>
+ 
+ #vnc://192.168.99.100:32855
