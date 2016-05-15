@@ -3,9 +3,9 @@ package workers.runners;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
-@CucumberOptions(features = "src/test/resources/features/Test.feature",
+@CucumberOptions(features = "src/test/resources/features/megabus-booking.feature",
 // path to the features
-    glue = "steps", tags = {"@run"})
+    glue = "steps", tags = {"@run","@firefox"})
 // what tags to incluse(@)/exclude(@~)
 public class MegaBusTest extends AbstractTestNGCucumberTests {
 

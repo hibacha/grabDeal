@@ -15,6 +15,7 @@ import com.megabus.views.Result.Itinerary;
 import com.megabus.views.Result.TRIP;
 import com.megabus.views.SeatSelect;
 import com.steve.utils.BrowserDriver;
+import com.steve.utils.Browsers;
 import com.steve.utils.ThreadUntils;
 
 import cucumber.api.java.en.And;
@@ -25,10 +26,17 @@ import cucumber.api.java.en.When;
 public class MegaBusSteps {
 
   private static final Logger LOGGER = Logger.getLogger(MegaBusSteps.class.getName());
-  private Home home = new Home();
-  private Result result = new Result();
-  private SeatSelect seatSelect = new SeatSelect();
-  private Payment payment = new Payment();
+  private Home home;
+  private Result result;
+  private SeatSelect seatSelect;
+  private Payment payment;
+  
+  @Given("^I open a (.*) browser")
+  public void open_browser_type(String browserType){
+    System.out.println(browserType.toUpperCase());
+    Browsers browser = Browsers.valueOf(browserType.toUpperCase());
+    BrowserDriver.launchBrowserDriver(browser);
+  }
   
   @Given("^I navigate to the megabus$")
   public void given_navigate_to_megabus() {
@@ -37,99 +45,114 @@ public class MegaBusSteps {
 
   @When("^I try to set departure state as '(.+)'")
   public void when_set_departure_state(String state) {
-    home.selectDepartureState(state);
+    getHome().selectDepartureState(state);
   }
 
-  @And("^I try to set departure city as '(.+)'")
+  @When("^I try to set departure city as '(.+)'")
   public void when_set_departure_city(String city) {
-    home.selectDepartureCity(city);
+    getHome().selectDepartureCity(city);
   }
 
-  @And("^I try to set arrival city as '(.+)'")
+  @When("^I try to set arrival city as '(.+)'")
   public void when_set_arrival_city(String city) {
-    home.selectArrivalCity(city);
+    getHome().selectArrivalCity(city);
   }
 
-  @And("^I try to set departure date as '(\\d{1,2})/(\\d{1,2})/(\\d{4})'")
+  @When("^I try to set departure date as '(\\d{1,2})/(\\d{1,2})/(\\d{4})'")
   public void when_set_departure_date(int month, int day, int year) {
-    home.selectDepartureDate(LocalDate.of(year, month, day));
+    getHome().selectDepartureDate(LocalDate.of(year, month, day));
   }
 
-  @And("^I try to set return date as '(\\d{1,2})/(\\d{1,2})/(\\d{4})'")
+  @When("^I try to set return date as '(\\d{1,2})/(\\d{1,2})/(\\d{4})'")
   public void when_set_return_date(int month, int day, int year) {
-    home.selectReturnDate(LocalDate.of(year, month, day));
+    getHome().selectReturnDate(LocalDate.of(year, month, day));
   }
 
-  @And("^I click the search button$")
+  @When("^I click the search button$")
   public void when_click_search_button() {
-    home.clickSearchButton();
+    getHome().clickSearchButton();
   }
 
   @Then("^I should get bus information for my input$")
   public void then_get_bus_info_successfully() {
-    result.isResultShown();
+    getResult().isResultShown();
     LOGGER.info("successfully get result");
   }
 
   @Given("^I try to find departure time between (.*?) and (.*?)$")
   public void find_departure_between(String earlierTime, String laterTime) {
-    Map<Itinerary, WebElement> results = result.loadTripResultByType(TRIP.DEPARTURE);
-    results = result.findBetween(results, earlierTime, laterTime);
-    Itinerary cheapest = result.findCheapest(results.keySet());
+    Map<Itinerary, WebElement> results = getResult().loadTripResultByType(TRIP.DEPARTURE);
+    results = getResult().findBetween(results, earlierTime, laterTime);
+    Itinerary cheapest = getResult().findCheapest(results.keySet());
     results.get(cheapest).findElement(By.xpath("li//input[@type='radio']")).click();
   }
 
   @And("^I try to find return time between (.*?) and (.*?)$")
   public void find_return_between(String earlierTime, String laterTime) {
-    Map<Itinerary, WebElement> results = result.loadTripResultByType(TRIP.RETURN);
-    results = result.findBetween(results, earlierTime, laterTime);
-    Itinerary cheapest = result.findCheapest(results.keySet());
+    Map<Itinerary, WebElement> results = getResult().loadTripResultByType(TRIP.RETURN);
+    results = getResult().findBetween(results, earlierTime, laterTime);
+    Itinerary cheapest = getResult().findCheapest(results.keySet());
     results.get(cheapest).findElement(By.xpath("li//input[@type='radio']")).click();
   }
 
   @When("^I click add to journey button$")
   public void click_add_to_journey_button() {
-    
-    result.addToJourney();
+    getResult().addToJourney();
   }
 
   @And("^I click continue button$")
   public void click_continue_button_outbound() {
     LOGGER.info("first time click continue button");
-    seatSelect.clickContinueButton();
+    getSeatSelect().clickContinueButton();
     ThreadUntils.sleep(TimeUnit.SECONDS, 2);
   }
 
   @And("^I click continue button again$")
   public void click_continue_button_inbound() {
     LOGGER.info("second time click continue button");
-    seatSelect.clickContinueButton();
+    getSeatSelect().clickContinueButton();
     ThreadUntils.sleep(TimeUnit.SECONDS, 2);
   }
 
   @And("^Input my mobile phone number ([\\d-]+)$")
   public void type_mobile_phone(String rawPhoneNumber) {
-    seatSelect.typeMobilephone(rawPhoneNumber);
+    getSeatSelect().typeMobilephone(rawPhoneNumber);
     ThreadUntils.sleep(TimeUnit.SECONDS, 2);
     
   }
 
   @And("^Check agree checkbox$")
   public void check_agree_checkbox() {
-    seatSelect.checkTermBox();
+    getSeatSelect().checkTermBox();
   }
 
   @Then("^Click submit button$")
   public void click_submit() {
-    seatSelect.clickSubmitButton();
+    getSeatSelect().clickSubmitButton();
     ThreadUntils.sleep(TimeUnit.SECONDS, 2);
   }
 
   @Then("^Click visa icon$")
   public void click_visa() {
     // TODO move to new view later
-    seatSelect.clickVisaIcon();
+    getSeatSelect().clickVisaIcon();
     //payment.input_payment_info();
     BrowserDriver.close();
+  }
+  
+  public Home getHome() {
+    return home = home == null ? new Home() : home;
+  }
+
+  public Result getResult() {
+    return result = result == null ? new Result() : result;
+  }
+
+  public SeatSelect getSeatSelect() {
+    return seatSelect = seatSelect == null ? new SeatSelect() : seatSelect;
+  }
+
+  public Payment getPayment() {
+    return payment = payment == null ? new Payment() : payment;
   }
 }
