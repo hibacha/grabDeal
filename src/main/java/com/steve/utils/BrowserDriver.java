@@ -16,14 +16,14 @@ public class BrowserDriver {
   private static final Logger LOGGER = Logger.getLogger(BrowserDriver.class.getName());
   private static ThreadLocal<WebDriver> mDriver = new ThreadLocal<WebDriver>();
 
-  public synchronized static WebDriver getCurrentDriver() {
+  public synchronized static WebDriver launchBrowserDriver(Browsers type) {
     if (mDriver.get() == null) {
       try {
-        mDriver.set(BrowserFactory.getBrowser());
+        mDriver.set(BrowserFactory.getBrowser(type));
       } catch (UnreachableBrowserException e) {
-        mDriver.set( BrowserFactory.getBrowser());
+        mDriver.set( BrowserFactory.getBrowser(type));
       } catch (WebDriverException e) {
-        mDriver.set(BrowserFactory.getBrowser());
+        mDriver.set(BrowserFactory.getBrowser(type));
       } finally {
         Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
       }
@@ -31,6 +31,10 @@ public class BrowserDriver {
     return mDriver.get();
   }
 
+  public static WebDriver getCurrentDriver(){
+    return mDriver.get();
+  }
+  
   public static void close() {
     try {
       if (mDriver.get() != null) {
