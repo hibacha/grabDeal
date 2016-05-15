@@ -1,5 +1,7 @@
 data:
  build: jenkins-data
+ volumes:
+  - /Users/steve/Documents/workspace-sts-3.6.3.SR1/grabDeal/:/host/workspace/gd/
 master:
  build: jenkins-master
  volumes_from:
@@ -22,5 +24,11 @@ node:
  build: selenium-node
  ports:
   - "32999:5900"
+ links:
+  - hub:hub
+nodeff:
+ build: selenium-node-ff
+ ports:
+  - "32855:5900"
  links:
   - hub:hub

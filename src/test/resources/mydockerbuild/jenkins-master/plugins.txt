@@ -1,0 +1,6 @@
+jclouds-jenkins
+token-macro
+durable-task
+docker-plugin
+git
+filesystem_scm:1.20
