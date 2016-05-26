@@ -5,9 +5,10 @@ import java.util.Properties;
 
 import org.openqa.selenium.support.PageFactory;
 
+import utils.BrowserDriver;
+import utils.Utility;
+
 import com.megabus.containers.PaymentContainer;
-import com.steve.utils.BrowserDriver;
-import com.steve.utils.Utility;
 
 public class Payment {
   public Payment() {

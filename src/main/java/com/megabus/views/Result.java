@@ -20,10 +20,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.BrowserDriver;
+import utils.ThreadUntils;
+import utils.Utility;
+
 import com.megabus.containers.ResultContainer;
-import com.steve.utils.BrowserDriver;
-import com.steve.utils.ThreadUntils;
-import com.steve.utils.Utility;
 
 public class Result {
   public enum TRIP {

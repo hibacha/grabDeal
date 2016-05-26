@@ -1,4 +1,4 @@
-package com.steve.utils;
+package utils;
 
 public enum Browsers {
 

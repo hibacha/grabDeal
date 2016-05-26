@@ -8,15 +8,16 @@ import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import utils.BrowserDriver;
+import utils.Browsers;
+import utils.ThreadUntils;
+
 import com.megabus.views.Home;
 import com.megabus.views.Payment;
 import com.megabus.views.Result;
 import com.megabus.views.Result.Itinerary;
 import com.megabus.views.Result.TRIP;
 import com.megabus.views.SeatSelect;
-import com.steve.utils.BrowserDriver;
-import com.steve.utils.Browsers;
-import com.steve.utils.ThreadUntils;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;

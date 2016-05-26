@@ -2,8 +2,9 @@ package com.megabus.views;
 
 import org.openqa.selenium.support.PageFactory;
 
+import utils.BrowserDriver;
+
 import com.megabus.containers.SeatSelectContainer;
-import com.steve.utils.BrowserDriver;
 
 public class SeatSelect {
 

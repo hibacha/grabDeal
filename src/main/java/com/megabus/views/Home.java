@@ -1,6 +1,6 @@
 package com.megabus.views;
 
-import static com.steve.utils.ThreadUntils.sleep;
+import static utils.ThreadUntils.sleep;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,8 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import utils.BrowserDriver;
+
 import com.megabus.containers.HomeContainer;
-import com.steve.utils.BrowserDriver;
 
 public class Home {
 
