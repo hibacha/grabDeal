@@ -16,11 +16,9 @@ RUN yum install -y git && \
 #download maven for maven build
 RUN wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
 RUN tar xzf apache-maven-3.2.5-bin.tar.gz -C /usr/local
-RUN cd /usr/local
-RUN touch /etc/profile.d/maven.sh
-ENV M2_HOME /usr/local/apache-maven-3.2.5
+RUN ln -s /usr/local/apache-maven-3.2.5 /usr/local/maven
+ENV M2_HOME /usr/local/maven
 ENV PATH $M2_HOME/bin:$PATH
-ENV DISPLAY :0.0
 
 #change maven local repository to specific folder on volume
 RUN mkdir -p /var/maven/localRepo
