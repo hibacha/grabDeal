@@ -30,55 +30,55 @@ public class BrowserFactory {
         driver = new HtmlUnitDriver();
         break;
       case CHROME:
-        driver = createChromeDriver();
+        driver = createBrowserDriver(Browsers.CHROME);
         break;
       case SAFARI:
         driver = createSafariDriver();
         break;
       case FIREFOX:
       default:
-        driver = createFirefoxDriver(getFirefoxProfile());
+        driver = createBrowserDriver(Browsers.FIREFOX);
         break;
     }
     addAllBrowserSetup(driver);
     return driver;
   }
 
+  private static DesiredCapabilities createDesiredCapabilities(Browsers browser) {
+    DesiredCapabilities dc = null;
+    switch (browser) {
+      case CHROME:
+        dc = DesiredCapabilities.chrome();
+        break;
+      case FIREFOX:
+      default:
+        dc = DesiredCapabilities.firefox();
+    }
+    dc.setPlatform(Platform.ANY);
+    return dc;
+  }
   
-
-  private static WebDriver createChromeDriver() {
-    DesiredCapabilities desiredCapability = DesiredCapabilities.chrome();
-    desiredCapability.setPlatform(Platform.ANY);
-    desiredCapability.setBrowserName("chrome");
+  private static WebDriver createBrowserDriver(Browsers browser) {
     RemoteWebDriver wd = null;
     try {
       //for using selenuium hub from docker 
       //String dockerHostHub ="192.168.99.100:32888";
       //local selenium hub
-      String dockerHostHub = "192.168.99.1:4444";
+      //String dockerHostHub = "192.168.99.1:4444";
       
       //all docker 
-      //String dockerHostHub = "hub:4444";
-      wd = new RemoteWebDriver(new URL("http://"+dockerHostHub+"/wd/hub"), desiredCapability);
+      String dockerHostHub = "hub:4444";
+      wd = new RemoteWebDriver(new URL("http://"+dockerHostHub+"/wd/hub"), createDesiredCapabilities(browser));
     } catch (MalformedURLException e) {
       e.printStackTrace();
     };
     return wd;
   }
 
-  private static WebDriver createFirefoxDriver(FirefoxProfile firefoxProfile) {
-    return new FirefoxDriver(firefoxProfile);
-  }
-
   private static WebDriver createSafariDriver() {
     return new SafariDriver();
   }
   
-  private static FirefoxProfile getFirefoxProfile() {
-    FirefoxProfile firefoxProfile = new FirefoxProfile();
-    return firefoxProfile;
-  }
-
   private static void addAllBrowserSetup(WebDriver driver) {
     driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
   }

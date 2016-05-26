@@ -5,8 +5,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(features = "src/test/resources/features/megabus-booking.feature",
 // path to the features
-    glue = "steps", tags = {"@run","@firefox"})
+    glue = "steps", tags = {"@run","@chrome"})
 // what tags to incluse(@)/exclude(@~)
-public class MegaBusTest extends AbstractTestNGCucumberTests {
+public class MegaBusTestByChrome extends AbstractTestNGCucumberTests {
 
 }
