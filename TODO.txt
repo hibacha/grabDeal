@@ -17,3 +17,15 @@ Update volumn_from to specify repo location above
 x11 display issue--comment out some code about awt
 symbolic link is not working ln -s
 
+!!!!
+Thread Local memory issue.
+java Runtime problem. if multithread begin how many runtime is has 
+
+5/28/2016
+networking
+create user-defined bridge network
+set static ip to this network
+
+6/12/2016
+using yml version 2 for compose but doesn't work for selenium since the node needs to wait hub service finish
+https://github.com/SeleniumHQ/docker-selenium/issues/133
