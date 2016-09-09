@@ -1,0 +1,38 @@
+version: '2'
+services:
+  data:
+    build: jenkins-data
+    volumes:
+     - /Users/steve/Documents/workspace-sts-3.6.3.SR1/grabDeal/:/host/workspace/gd/ 
+  master:
+    build: jenkins-master
+    volumes_from:
+     - data
+    ports:
+     - "50000:50000"
+  nginx:
+    build: jenkins-nginx
+    ports:
+     - "80:80"
+    links:
+     - "master:jenkins-master"
+  slave:
+    build: jenkins-slave
+  hub:
+    build: selenium-hub
+    ports:
+     - "32888:4444"
+  node:
+    image: selenium/node-chrome
+    depends_on:
+     - hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+  nodeff:
+    image: selenium/node-firefox
+    depends_on:
+     - hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
