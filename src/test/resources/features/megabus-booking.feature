@@ -15,8 +15,8 @@ Scenario: input departure and return info
 	When I try to set departure state as 'Massachusetts'
 	   And I try to set departure city as 'Boston, MA'
 	   And I try to set arrival city as 'New York, NY'
-	   And I try to set departure date as '07/11/2016'
-	   And I try to set return date as '08/23/2016'
+	   And I try to set departure date as '10/11/2016'
+	   And I try to set return date as '11/23/2016'
 	   And I click the search button   
 	Then I should get bus information for my input
 
