@@ -8,7 +8,7 @@ eval $(docker-machine env default)
 docker run -d --name hub -P selenium/hub
 
 #start a local docker node of chrome
-docker run -d --name chrome-debug --link hub:hub -P selenium/node-chrome-debug
+docker run -d --name chrome-debug --link compose_hub_1:hub --net="compose_default" -P selenium/node-chrome-debug
  
 docker ps
 docker-machine ls
