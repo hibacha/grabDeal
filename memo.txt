@@ -1,3 +1,5 @@
+http://www.ibm.com/developerworks/library/a-automating-ria/
+
 echo "# grabDeal" >> README.md
 git init
 git add README.md
@@ -24,12 +26,18 @@ maven home
 
 @make jenkin can run selenium web driver@
 	don't use jenkin install library
-	USE [java -jar jenkins.jar]
+	USE [java -jar jenkins.war]
 	https://forgetfulprogrammer.wordpress.com/tag/interact-with-desktop/
 	
 
-@
+@docker
+The binaries are installed in the /usr/local/bin directory
+
+@run selenium hub/node 
 	
+cd /Users/steve/Documents/workspace-sts-3.6.3.SR1/grabDeal/src/test/resources/server
+java -jar selenium-server-standalone-2.53.0.jar -role hub -hubConfig hubConfig.json
+java -jar selenium-server-standalone-2.53.0.jar -role node -hub http://192.168.1.155:4444/grid/register -nodeConfig nodeConfig.json -Dwebdriver.chrome.driver=/Users/steve/Documents/workspace-sts-3.6.3.SR1/grabDeal/src/test/resources/drivers/chromedriver
 
 
 	
